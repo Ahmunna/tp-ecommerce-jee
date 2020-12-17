@@ -49,8 +49,25 @@ public class ControleurServlet extends HttpServlet {
             case "showCart": showCart(req, resp); break;
             case "showProducts": showProducts(req,resp); break;
             case "validateOrder": validateOrder(req, resp); break;
+            case "addProductToCart": addProductToCart(req, resp); break;
             default: showError(req, resp); break;
         }
+    }
+
+    private void addProductToCart(HttpServletRequest req, HttpServletResponse resp) {
+        Cart c;
+        HttpSession session = req.getSession();
+        if(session.getAttribute("cart") == null)
+        {
+            c = new Cart();
+        }
+        else
+        {
+            c = (Cart) session.getAttribute("cart");
+        }
+        Product p = cb.getProduct(Long.parseLong(req.getParameter("id")));
+        int quantity = Integer.parseInt(req.getParameter("productQuantity"));
+        c.addItem(p, quantity);
     }
 
     private void validateOrder(HttpServletRequest req, HttpServletResponse resp) {

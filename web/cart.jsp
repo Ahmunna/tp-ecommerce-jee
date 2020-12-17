@@ -10,24 +10,28 @@
     <div class="alert alert-secondary" role="alert">Votre panier est vide !</div>
 </div>
 <% } else {
-    Cart cart = (Cart) session.getAttribute("cart");
 %>
 <div class="container m-3">
-    <table class="table">
-        <thead>
-            <th scope="col">name</th>
-            <th scope="col">price</th>
-            <th scope="col">quantity</th>
-            <th scope="col">total</th>
-        </thead>
-        <tbody>
-            <c:forEach var="orderLine" items="cart">
-                <tr>
-                    <td></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+    <form>
+        <table class="table">
+            <thead>
+                <th scope="col">name</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+                <th scope="col">total</th>
+            </thead>
+            <tbody>
+                <c:forEach var="orderLine" items="${items}">
+                    <tr>
+                        <td>${OrderLine.product.designation}</td>
+                        <td>${OrderLine.product.price}</td>
+                        <td>${OrderLine.quantity}</td>
+                        <td>${OrderLine.price}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table><button type="submit">Acheter</button>
+    </form>
 </div>
 <% }%>
 

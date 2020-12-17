@@ -1,5 +1,7 @@
 # Project Ignores Files 
 
+/out/*
+/target/*
 # Maven
 .mvn
 *.classpath
